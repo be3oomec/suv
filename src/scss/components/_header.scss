@@ -1,0 +1,61 @@
+.header {
+  padding: 18px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.header__logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  flex: 0 0 200px;
+
+  margin-right: 18px;
+}
+
+.header__logo-img {
+  width: 34px;
+  height: 34px;
+  margin-right: 18px;
+}
+
+.header__logo-text {
+  font-family: $raleway;
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 15px;
+  letter-spacing: 0.5em;
+  text-transform: uppercase;
+  color: $white;
+}
+
+.header__phone,
+.header__address {
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 12px;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: rgba($white, 0.5);
+}
+
+.header__phone span,
+.header__address span {
+  color: $orange;
+  font-family: $roboto;
+}
+
+// .header__address {}
+
+.header__decor {
+  flex: 1 0 0;
+  text-align: center;
+}
+
+.header__burger {
+  flex: 0 0 200px;
+  text-align: right;
+}
