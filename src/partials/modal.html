@@ -1,0 +1,28 @@
+<div class="modal micromodal-slide" id="modal-1" aria-hidden="true">
+  <div class="modal__overlay" tabindex="-1" data-micromodal-close>
+    <div class="modal__container" role="dialog" aria-modal="true" aria-labelledby="modal-1-title">
+      <header class="modal__header">
+        <h2 class="modal__title" id="modal-1-title">
+          Оставить заявку
+        </h2>
+        <button class="modal__close" aria-label="Close modal" data-micromodal-close></button>
+      </header>
+      <form class='modal__form form' action='#'>
+        <main class="form__content" id="modal-1-content">
+            <label>
+              <input class='form__input' id='name' type='text' name='name' placeholder='Ваше имя' required>
+            </label>
+            <label>
+              <input class='form__input' id='email' type='email' name='email' title='Please provide only a authentic e-mail address' pattern='^([0-9a-zA-Z]([-.]*[0-9a-zA-Z])*@([0-9a-zA-Z][-]*[0-9a-zA-Z])+[a-zA-Z]{2,9})$' placeholder='Your working email' required>
+            </label>
+            <label>
+              <textarea class='form__input' name="message" placeholder="Сообщение..."></textarea>
+            </label>
+        </main>
+        <footer class="modal__footer">
+          <button class="button"><span>Отправить</span></button>
+        </footer>
+      </form>
+    </div>
+  </div>
+</div>

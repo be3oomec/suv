@@ -1,56 +1,117 @@
-// Фикс фулскрин-блоков
-// import './functions/fix-fullheight';
+// Подключение свайпера gsap micromodal
+import {
+  gsap,
+  Power2
+} from 'gsap';
+import Swiper, {
+  Navigation,
+  Pagination,
+  Parallax,
+  Mousewheel,
+  Controller,
+  Scrollbar
+} from 'swiper';
+import MicroModal from 'micromodal';
 
-// Реализация бургер-меню
-// import { burger } from './functions/burger';
+Swiper.use([Navigation, Pagination, Parallax, Mousewheel, Controller, Scrollbar]);
 
-// Реализация остановки скролла (не забудьте вызвать функцию)
-// import { disableScroll } from './functions/disable-scroll';
+const swiperImg = new Swiper('.slider-img', {
+  loop: false,
+  speed: 2400,
+  parallax: true,
+  pagination: {
+    el: '.slider__pagination-count .total',
+    type: 'custom',
+    renderCustom: function (swiper, current, total) {
+      let totalRes = total >= 10 ? total : `0${total}`
+      return totalRes
+    }
+  },
+});
 
-// Реализация включения скролла (не забудьте вызвать функцию)
-// import { enableScroll } from './functions/disable-scroll';
+const swiperText = new Swiper('.slider-text', {
+  loop: false,
+  speed: 2400,
+  mousewheel: {
+    invert: false,
+  },
+  pagination: {
+    el: '.swiper-pagination',
+    clickable: true,
+  },
+  scrollbar: {
+    el: '.swiper-scrollbar',
+    draggable: true,
+  },
+  navigation: {
+    prevEl: '.swiper-button-prev',
+    nextEl: '.swiper-button-next'
+  }
+});
 
-// Реализация модального окна
-// import GraphModal from 'graph-modal';
-// const modal = new GraphModal();
+swiperImg.controller.control = swiperText;
+swiperText.controller.control = swiperImg;
 
-// Реализация табов
-// import GraphTabs from 'graph-tabs';
-// const tabs = new GraphTabs('tab');
 
-// Подключение плагина кастом-скролла
-// import 'simplebar';
+let gear = document.querySelector('.slider__gear');
 
-// Подключение плагина для позиционирования тултипов
-// import { createPopper, right} from '@popperjs/core';
-// createPopper(el, tooltip, {
-//   placement: 'right'
-// });
+swiperText.on('slideNextTransitionStart', function () {
+  gsap.to(gear, 2.8, {
+    rotation: '+=40',
+    ease: Power2.easeOut
+  })
+});
 
-// Подключение свайпера
-// import Swiper, { Navigation, Pagination } from 'swiper';
-// Swiper.use([Navigation, Pagination]);
-// const swiper = new Swiper(el, {
-//   slidesPerView: 'auto',
-// });
+swiperText.on('slidePrevTransitionStart', function () {
+  gsap.to(gear, 2.8, {
+    rotation: '-=40',
+    ease: Power2.easeOut
+  })
+});
 
-// Подключение анимаций по скроллу
-// import AOS from 'aos';
-// AOS.init();
 
-// Подключение параллакса блоков при скролле
-// import Rellax from 'rellax';
-// const rellax = new Rellax('.rellax');
+// Slide Change
 
-// Подключение плавной прокрутки к якорям
-// import SmoothScroll from 'smooth-scroll';
-// const scroll = new SmoothScroll('a[href*="#"]');
+let currentNum = document.querySelector('.slider__pagination-count .current'),
+  paginationCurrent = document.querySelector('.slider__pagination-current-num');
 
-// import { validateForms } from './functions/validate-forms';
-// const rules1 = [...];
+swiperText.on('slideChange', function () {
+  let index = swiperText.realIndex + 1,
+      indexRes = index >= 10 ? index : `0${index}`
 
-// const afterForm = () => {
-//   console.log('Произошла отправка, тут можно писать любые действия');
-// };
 
-// validateForms('.form-1', rules1, afterForm);
+  gsap.to(currentNum, 0.2, {
+    force3D: true,
+    y: -10,
+    opacity: 0,
+    ease: Power2.easeOut,
+    onComplete: function () {
+      gsap.to(currentNum, 0.1, {
+        force3D: true,
+        y: 10
+      })
+      currentNum.innerHTML = indexRes
+      paginationCurrent.innerHTML = indexRes
+    }
+  })
+
+  gsap.to(currentNum, 0.2, {
+    force3D: true,
+    y: 0,
+    opacity: 1,
+    ease: Power2.easeOut,
+    delay: 0.3,
+  })
+});
+
+
+// Micromodal
+
+MicroModal.init({
+  openTrigger: 'data-micromodal-open',
+  closeTrigger: 'data-micromodal-close',
+  disableFocus: true,
+  disableScroll: true,
+  awaitOpenAnimation: true,
+  awaitCloseAnimation: true,
+})
