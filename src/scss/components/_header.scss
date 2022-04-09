@@ -4,6 +4,11 @@
   justify-content: space-between;
 
   position: relative;
+
+  z-index: 10;
+
+  background-color: $black-800;
+  border-bottom: 1px solid rgba($white, 0.1);
 }
 
 .header__logo {
@@ -98,7 +103,7 @@
 .header__burger {
   flex: 0 0 200px;
   text-align: right;
-  height: 70px;
+  height: $size70;
   position: relative;
 }
 
@@ -106,8 +111,8 @@
   position: absolute;
   top: 0;
   right: 0;
-  width: 70px;
-  height: 70px;
+  width: $size70;
+  height: $size70;
   background-color: #3C3C3C;
   background-image: url(../img/burger.svg);
   background-repeat: no-repeat;
