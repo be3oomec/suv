@@ -1,9 +1,9 @@
 .header {
-  padding: 18px;
-
   display: flex;
   align-items: center;
   justify-content: space-between;
+
+  position: relative;
 }
 
 .header__logo {
@@ -14,6 +14,12 @@
   flex: 0 0 200px;
 
   margin-right: 18px;
+
+  &:hover {
+    .header__logo-text {
+      color: $orange;
+    }
+  }
 }
 
 .header__logo-img {
@@ -30,6 +36,29 @@
   letter-spacing: 0.5em;
   text-transform: uppercase;
   color: $white;
+  transition: color 0.3s;
+}
+
+.header__contacts {
+  display: flex;
+}
+
+.header__separator {
+  position: relative;
+  &:before {
+    content: "";
+    width: 1px;
+    height: 30px;
+    background-color: #fff;
+    opacity: 0.2;
+
+    position: absolute;
+    top: -50%;
+  }
+}
+
+.header__contacts > * {
+  margin: 0 20px;
 }
 
 .header__phone,
@@ -53,9 +82,39 @@
 .header__decor {
   flex: 1 0 0;
   text-align: center;
+
+  &::before {
+    content: '';
+    height: 1px;
+    width: 50px;
+    background-color: $white;
+    display: inline-block;
+    opacity: 0.2;
+    position: relative;
+    top: -5px;
+  }
 }
 
 .header__burger {
   flex: 0 0 200px;
   text-align: right;
+  height: 70px;
+  position: relative;
+}
+
+.header__burger span {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 70px;
+  height: 70px;
+  background-color: #3C3C3C;
+  background-image: url(../img/burger.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+  transition: background-color 0.3s;
+
+  &:hover {
+    background-color: $orange;
+  }
 }
