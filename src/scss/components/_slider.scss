@@ -25,10 +25,10 @@
 }
 
 .slider-img {
-  height: 100%;
+  height: calc(100% - 71px);
   width: 75%;
   overflow: hidden;
-  position: relative;
+  position: absolute;
 
   &:before {
     content: "";
@@ -208,7 +208,7 @@
   top: 50%;
   z-index: 2;
   transform: translate(-10%, -40%);
-  right: 0;
+  right: 50px;
 }
 
 .slider__pagination-count {
@@ -235,7 +235,7 @@
 .slider__pagination-current {
   position: absolute;
   right: 40px;
-  bottom: 10px;
+  bottom: 20px;
 
   font-family: $oswald;
   font-size: 100px;
