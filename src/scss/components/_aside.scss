@@ -12,6 +12,10 @@
   justify-content: center;
 
   z-index: 5;
+
+  @include _576 {
+    display: none;
+  }
 }
 
 .aside__list {

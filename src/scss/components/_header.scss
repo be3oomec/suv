@@ -46,10 +46,15 @@
 
 .header__contacts {
   display: flex;
+
+  @include _768 {
+    display: none;
+  }
 }
 
 .header__separator {
   position: relative;
+
   &:before {
     content: "";
     width: 1px;
@@ -62,7 +67,7 @@
   }
 }
 
-.header__contacts > * {
+.header__contacts>* {
   margin: 0 20px;
 }
 
@@ -98,6 +103,10 @@
     position: relative;
     top: -5px;
   }
+
+  @include _992 {
+    display: none;
+  }
 }
 
 .header__burger {
@@ -105,6 +114,14 @@
   text-align: right;
   height: $size70;
   position: relative;
+
+  @include _992 {
+    flex: 0 0 90px;
+  }
+
+  @include _576 {
+    height: 40px;
+  }
 }
 
 .header__burger span {
@@ -121,5 +138,10 @@
 
   &:hover {
     background-color: $orange;
+  }
+
+  @include _576 {
+    width: 40px;
+    height: 40px;
   }
 }
